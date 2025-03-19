@@ -1,0 +1,10 @@
+services:
+  app:
+    build: src
+    command: [ "python", "manage.py", "runserver", "0.0.0.0:80" ]
+    ports:
+      - "80:80"
+    env_file:
+      - src/local.env
+    volumes:
+      - "./src:/app"
