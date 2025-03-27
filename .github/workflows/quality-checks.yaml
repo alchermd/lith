@@ -4,6 +4,7 @@ on:
     branches: [ "master" ]
 jobs:
   lint:
+    name: Run Linters
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -12,6 +13,7 @@ jobs:
       - run: echo "🔎Running linters"
       - run: make lint
   test:
+    name: Run Test Suite
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
