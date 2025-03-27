@@ -1,0 +1,17 @@
+name: Quality Checks
+on:
+  pull_request:
+    branches: [ "master" ]
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: echo "🔎Running linters"
+      - run: make lint
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: echo "🧪Running tests"
+      - run: make test
