@@ -7,11 +7,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - run: echo "🚀Starting app"
+      - run: make dup
       - run: echo "🔎Running linters"
       - run: make lint
   test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - run: echo "🚀Starting app"
+      - run: make dup
       - run: echo "🧪Running tests"
       - run: make test
