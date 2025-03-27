@@ -7,6 +7,9 @@ dup:
 down:
 	docker compose down
 
+format:
+	docker compose exec app black .
+
 lint:
 	docker compose exec app black --check .
 	docker compose exec app flake8 .
