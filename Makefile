@@ -8,7 +8,7 @@ down:
 	docker compose down
 
 lint:
-	docker compose exec app black .
+	docker compose exec app black --check .
 	docker compose exec app flake8 .
 
 test:
