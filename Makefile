@@ -1,6 +1,12 @@
 up:
 	docker compose up --build
 
+dup:
+	docker compose up --build -d
+
+down:
+	docker compose down
+
 lint:
 	docker compose exec app black .
 	docker compose exec app flake8 .
