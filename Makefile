@@ -13,6 +13,7 @@ format:
 lint:
 	docker compose exec app black --check .
 	docker compose exec app flake8 .
+	docker run --rm -v $(CURDIR):/mnt koalaman/shellcheck-alpine sh -c "find /mnt -name '*.sh' | xargs shellcheck"
 
 test:
 	docker compose exec app pytest
