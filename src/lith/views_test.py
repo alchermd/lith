@@ -1,7 +1,7 @@
 import json
 
 import pytest
-from django.test import RequestFactory
+from django.test import RequestFactory, Client
 from django.urls import reverse
 
 from .models import User
@@ -38,3 +38,19 @@ def test_can_login_using_valid_credentials():
     assert 302 == response.status_code
     # TODO: Replace this with a reverse lookup when the dashboard URL is available.
     assert "/dashboard" == response.url
+
+
+@pytest.mark.django_db
+def test_login_with_invalid_credentials_shows_an_error_message(client: Client):
+    # When an invalid set of credentials are used to log in.
+    payload = {
+        "email": "unauthenticated@example.com",
+        "password": "test-password",
+    }
+    response = client.post(reverse("lith:login"), data=payload)
+
+    # Then the response returns an unauthorized status code
+    assert 401 == response.status_code
+
+    # ... and a helpful error message.
+    assert "Invalid credentials" in response.content.decode("utf-8")

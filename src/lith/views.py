@@ -1,6 +1,7 @@
+from django.contrib import messages
 from django.contrib.auth import authenticate
 from django.http import HttpRequest, JsonResponse, HttpResponse, HttpResponseRedirect
-from django.shortcuts import redirect
+from django.shortcuts import redirect, render
 
 
 def home(request: HttpRequest) -> HttpResponse:
@@ -13,5 +14,8 @@ def login(request: HttpRequest) -> HttpResponseRedirect | None:
 
     user = authenticate(username=email, password=password)
 
-    if user is not None:
-        return redirect("/dashboard")
+    if user is None:
+        messages.error(request, "Invalid credentials")
+        return render(request, "lith/auth/login.html", status=401)
+
+    return redirect("/dashboard")
