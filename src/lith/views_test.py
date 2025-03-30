@@ -5,7 +5,7 @@ from django.test import RequestFactory, Client
 from django.urls import reverse
 
 from .models import User
-from .views import home, login
+from .views import home
 
 
 def test_hello_world():
@@ -19,20 +19,18 @@ def test_hello_world():
 
 
 @pytest.mark.django_db
-def test_can_login_using_valid_credentials():
+def test_can_login_using_valid_credentials(client: Client):
     # Given a user.
     user = User.objects.create(email="foo@example.com")
     user.set_password("test-password")
     user.save()
 
     # When the user attempts to log in using valid credentials.
-    factory = RequestFactory()
     payload = {
         "email": "foo@example.com",
         "password": "test-password",
     }
-    request = factory.post(reverse("lith:login"), data=payload)
-    response = login(request)
+    response = client.post(reverse("lith:login"), data=payload)
 
     # Then they get redirected to the dashboard page.
     assert 302 == response.status_code
