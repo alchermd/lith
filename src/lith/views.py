@@ -28,4 +28,8 @@ def login(request: HttpRequest) -> HttpResponseRedirect | HttpRequest:
     else:
         form = LoginForm()
 
-    return render(request, "lith/auth/login.html", status=status)
+    context = {
+        "form": form,
+    }
+
+    return render(request, "lith/auth/login.html", context=context, status=status)
