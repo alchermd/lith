@@ -1,5 +1,6 @@
 from django.contrib import messages
 from django.contrib.auth import authenticate
+from django.contrib.auth.decorators import login_required
 from django.http import HttpRequest, JsonResponse, HttpResponse, HttpResponseRedirect
 from django.shortcuts import redirect, render
 
@@ -33,3 +34,8 @@ def login(request: HttpRequest) -> HttpResponseRedirect | HttpRequest:
     }
 
     return render(request, "lith/auth/login.html", context=context, status=status)
+
+
+@login_required
+def dashboard(request: HttpRequest) -> HttpResponse:
+    return HttpResponse(f"hello, {request.user.email}!")
