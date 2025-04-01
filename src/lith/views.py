@@ -66,4 +66,7 @@ def logout(request: HttpRequest) -> HttpResponseRedirect:
 
 @login_required
 def dashboard(request: HttpRequest) -> HttpResponse:
-    return HttpResponse(f"hello, {request.user.email}!")
+    context = {
+        "email": request.user.email,
+    }
+    return render(request, "lith/dashboard/dashboard.html", context=context)
