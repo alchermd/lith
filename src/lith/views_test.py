@@ -77,3 +77,29 @@ def test_guests_get_redirected_to_login_when_accessing_the_dashboard(client: Cli
     # Then the user is redirected to the login page
     assert 302 == response.status_code
     assert reverse("lith:login") in response.url
+
+
+def test_login_page_can_be_accessed_by_guests(client: Client):
+    # When a guest accesses the login page
+    response = client.get(reverse("lith:login"))
+
+    # Then the guest gets a successful response
+    assert 200 == response.status_code
+
+
+@pytest.mark.django_db
+def test_authenticated_users_get_redirected_to_dashboard_when_accessing_the_login_page(
+    client: Client,
+):
+    # Given an existing user
+    user = User.objects.create(email="foo@example.com")
+    user.set_password("test-password")
+    user.save()
+
+    # When that user accesses the login page
+    client.login(username="foo@example.com", password="test-password")
+    response = client.get(reverse("lith:login"))
+
+    # Then the user is redirected to the dashboard
+    assert 302 == response.status_code
+    assert reverse("lith:dashboard") in response.url
