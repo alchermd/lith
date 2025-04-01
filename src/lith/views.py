@@ -61,6 +61,7 @@ def login(request: HttpRequest) -> HttpResponseRedirect | HttpRequest:
 @require_http_methods(["POST"])
 def logout(request: HttpRequest) -> HttpResponseRedirect:
     django_logout(request)
+    messages.warning(request, "You have been logged out.")
     return redirect(reverse("lith:login"))
 
 

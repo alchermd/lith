@@ -124,6 +124,21 @@ def test_user_can_logout_to_terminate_session(client: Client):
     assert reverse("lith:login") in response.url
 
 
+@pytest.mark.django_db
+def test_user_gets_a_message_when_they_log_out(client: Client):
+    # Given an existing user that is logged in
+    user = User.objects.create(email="foo@example.com")
+    user.set_password("test-password")
+    user.save()
+    client.login(username="foo@example.com", password="test-password")
+
+    # When the user sends a request to logout
+    response = client.post(reverse("lith:logout"), follow=True)
+
+    # Then the response comes with an informational message
+    assert "You have been logged out" in response.content.decode("utf-8")
+
+
 def test_logout_is_not_accessible_via_GET(client: Client):
     # When a GET request is issued to the logout view
     response = client.get(reverse("lith:logout"))
