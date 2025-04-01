@@ -103,3 +103,30 @@ def test_authenticated_users_get_redirected_to_dashboard_when_accessing_the_logi
     # Then the user is redirected to the dashboard
     assert 302 == response.status_code
     assert reverse("lith:dashboard") in response.url
+
+
+@pytest.mark.django_db
+def test_user_can_logout_to_terminate_session(client: Client):
+    # Given an existing user that is logged in
+    user = User.objects.create(email="foo@example.com")
+    user.set_password("test-password")
+    user.save()
+    client.login(username="foo@example.com", password="test-password")
+
+    # When the user sends a request to logout
+    response = client.post(reverse("lith:logout"))
+
+    # Then the user's session ends
+    assert response.wsgi_request.user.is_anonymous
+
+    # ... and is redirected to the login page
+    assert 302 == response.status_code
+    assert reverse("lith:login") in response.url
+
+
+def test_logout_is_not_accessible_via_GET(client: Client):
+    # When a GET request is issued to the logout view
+    response = client.get(reverse("lith:logout"))
+
+    # Then a method not allowed response is returned
+    assert 405 == response.status_code

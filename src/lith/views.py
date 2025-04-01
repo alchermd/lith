@@ -1,11 +1,12 @@
 from typing import Callable
 
 from django.contrib import messages
-from django.contrib.auth import authenticate
+from django.contrib.auth import authenticate, logout as django_logout
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.http import HttpRequest, JsonResponse, HttpResponse, HttpResponseRedirect
 from django.shortcuts import redirect, render
 from django.urls import reverse, reverse_lazy
+from django.views.decorators.http import require_http_methods
 
 from .forms.auth import LoginForm
 from .models import User
@@ -55,6 +56,12 @@ def login(request: HttpRequest) -> HttpResponseRedirect | HttpRequest:
     }
 
     return render(request, "lith/auth/login.html", context=context, status=status)
+
+
+@require_http_methods(["POST"])
+def logout(request: HttpRequest) -> HttpResponseRedirect:
+    django_logout(request)
+    return redirect(reverse("lith:login"))
 
 
 @login_required
