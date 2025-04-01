@@ -32,10 +32,12 @@ def test_can_login_using_valid_credentials(client: Client):
     }
     response = client.post(reverse("lith:login"), data=payload)
 
-    # Then they get redirected to the dashboard page.
+    # Then the user is redirected to the dashboard page
     assert 302 == response.status_code
-    # TODO: Replace this with a reverse lookup when the dashboard URL is available.
-    assert "/dashboard" == response.url
+    assert reverse("lith:dashboard") in response.url
+
+    # ... and the user's session is authenticated
+    assert response.wsgi_request.user.is_authenticated
 
 
 @pytest.mark.django_db

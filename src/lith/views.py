@@ -1,7 +1,7 @@
 from typing import Callable
 
 from django.contrib import messages
-from django.contrib.auth import authenticate, logout as django_logout
+from django.contrib.auth import authenticate, logout as django_logout, login as django_login
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.http import HttpRequest, JsonResponse, HttpResponse, HttpResponseRedirect
 from django.shortcuts import redirect, render
@@ -44,7 +44,8 @@ def login(request: HttpRequest) -> HttpResponseRedirect | HttpRequest:
             user = authenticate(username=email, password=password)
 
             if user is not None:
-                return redirect("/dashboard")
+                django_login(request, user)
+                return redirect(reverse("lith:dashboard"))
 
             messages.error(request, "Invalid credentials")
             status = 401
