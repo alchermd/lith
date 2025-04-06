@@ -1,12 +1,19 @@
 {% extends "lith/base.html" %}
+{% load crispy_forms_tags %}
 
 {% block title %}login{% endblock %}
 
 {% block content %}
-    <form action="{% url "lith:login" %}" method="post">
-        {% csrf_token %}
-        {{ form }}
+    <div class="page page-center">
+        <div class="container container-tight py-4">
+            <div class="card card-md">
+                <div class="card-body">
+                    {% include "lith/partials/messages.html" %}
+                    <h2 class="h2 text-center mb-4">Login to your account</h2>
 
-        <input type="submit" value="Login">
-    </form>
+                    {% crispy form %}
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}
