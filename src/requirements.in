@@ -4,3 +4,5 @@ flake8
 pytest
 pytest-django
 psycopg2-binary
+django-crispy-forms
+crispy-bootstrap5

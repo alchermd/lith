@@ -44,6 +44,7 @@ def login(request: HttpRequest) -> HttpResponseRedirect | HttpRequest:
             user = authenticate(username=email, password=password)
 
             if user is not None:
+                messages.success(request, "You are now logged in.")
                 django_login(request, user)
                 return redirect(reverse("lith:dashboard"))
 
