@@ -1,6 +1,7 @@
 import os
 from pathlib import Path
 
+from django.contrib.messages import constants as messages
 from django.urls import reverse_lazy
 
 # Build paths inside the project like this: BASE_DIR / "subdir".
@@ -119,3 +120,9 @@ AUTH_USER_MODEL = "lith.User"
 # https://docs.djangoproject.com/en/5.1/ref/settings/#login-url
 
 LOGIN_URL = reverse_lazy("lith:login")
+
+# Custom message tags
+# https://docs.djangoproject.com/en/5.1/ref/contrib/messages/#message-tags
+MESSAGE_TAGS = {
+    messages.ERROR: "danger",
+}

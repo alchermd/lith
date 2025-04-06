@@ -1,8 +1,12 @@
-{% include "lith/partials/messages.html" %}
+{% extends "lith/base.html" %}
 
-<form action="{% url "lith:login" %}" method="post">
-    {% csrf_token %}
-    {{ form }}
+{% block title %}login{% endblock %}
 
-    <input type="submit" value="Login">
-</form>
+{% block content %}
+    <form action="{% url "lith:login" %}" method="post">
+        {% csrf_token %}
+        {{ form }}
+
+        <input type="submit" value="Login">
+    </form>
+{% endblock %}

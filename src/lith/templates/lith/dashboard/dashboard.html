@@ -1,3 +1,8 @@
-{% include "lith/partials/navbar.html" %}
+{% extends "lith/base.html" %}
 
-<h1>Hello, {{ email }}!</h1>
+{% block title %}dashboard{% endblock %}
+
+{% block content %}
+    {% include "lith/partials/navbar.html" %}
+    <h1>Hello, {{ email }}!</h1>
+{% endblock %}
