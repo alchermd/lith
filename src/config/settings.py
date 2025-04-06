@@ -26,6 +26,8 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "lith.apps.LithConfig",
+    "crispy_forms",
+    "crispy_bootstrap5",
 ]
 
 MIDDLEWARE = [
@@ -126,3 +128,8 @@ LOGIN_URL = reverse_lazy("lith:login")
 MESSAGE_TAGS = {
     messages.ERROR: "danger",
 }
+
+# Crispy Forms
+# https://github.com/django-crispy-forms/crispy-bootstrap5?tab=readme-ov-file#usage
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+CRISPY_TEMPLATE_PACK = "bootstrap5"
