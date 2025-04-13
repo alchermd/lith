@@ -3,7 +3,7 @@ from typing import Callable
 from django.contrib import messages
 from django.contrib.auth import authenticate, logout as django_logout, login as django_login
 from django.contrib.auth.decorators import login_required, user_passes_test
-from django.http import HttpRequest, JsonResponse, HttpResponse, HttpResponseRedirect
+from django.http import HttpRequest, HttpResponse, HttpResponseRedirect
 from django.shortcuts import redirect, render
 from django.urls import reverse, reverse_lazy
 from django.views.decorators.http import require_http_methods
@@ -28,8 +28,8 @@ def guest_required(f: Callable) -> Callable:
     return decorator
 
 
-def home(request: HttpRequest) -> HttpResponse:
-    return JsonResponse({"message": "hello, world"})
+def index(request: HttpRequest) -> HttpResponse:
+    return render(request, "lith/marketing/landing-page.html")
 
 
 @guest_required

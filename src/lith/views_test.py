@@ -1,21 +1,8 @@
-import json
-
 import pytest
-from django.test import RequestFactory, Client
+from django.test import Client
 from django.urls import reverse
 
 from .models import User
-from .views import home
-
-
-def test_hello_world():
-    factory = RequestFactory()
-    request = factory.get("/")
-    response = home(request)
-    assert 200 == response.status_code
-
-    json_response = json.loads(response.content)
-    assert "hello, world" == json_response["message"]
 
 
 @pytest.mark.django_db
