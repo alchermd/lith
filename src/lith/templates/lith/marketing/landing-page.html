@@ -1,0 +1,39 @@
+{% extends "lith/base.html" %}
+{% load static %}
+
+{% block title %}lith{% endblock %}
+
+{% block body_class %}body-marketing body-gradient{% endblock %}
+
+{% block css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static "lith/css/vendor/tabler/tabler-marketing.css" %}">
+    <link rel="stylesheet" href="{% static "lith/css/vendor/tabler/tabler-vendors.css" %}">
+{% endblock %}
+
+{% block content %}
+    {% include "lith/marketing/partials/navbar.html" %}
+    {% include "lith/marketing/partials/hero.html" %}
+    {% include "lith/marketing/partials/footer-links.html" %}
+    {% include "lith/marketing/partials/footer.html" %}
+{% endblock %}
+
+{% block js %}
+    {{ block.super }}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.10/typed.js"
+            integrity="sha512-tQQXRDB2wEmuJGtFrmmoFYzNTq8StA1XJrfO0OQbbTxd9G0CwaTDL6/C1y805IlvBVrMwOqob1kf6r/2U5XXVg=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const typed = new Typed("#typed", {
+          strings: ["Healthcare App", "Finance Startup", "API Integration", "Enterprise CRM", "Internal System"],
+          typeSpeed: 100,
+          backSpeed: 50,
+          backDelay: 1000,
+          startDelay: 1000,
+          loop: true,
+          fade: true,
+        });
+      });
+    </script>
+{% endblock %}
