@@ -25,7 +25,9 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "lith.apps.LithConfig",
+    "authnz.apps.AuthnzConfig",
+    "dashboard.apps.DashboardConfig",
+    "marketing.apps.MarketingConfig",
     "crispy_forms",
     "crispy_bootstrap5",
 ]
@@ -45,7 +47,9 @@ ROOT_URLCONF = "config.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": [
+            BASE_DIR / "templates",
+        ],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -107,6 +111,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 STATIC_URL = "static/"
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
@@ -116,12 +123,12 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 # Custom user model
 # https://docs.djangoproject.com/en/5.1/topics/auth/customizing/#substituting-a-custom-user-model
 
-AUTH_USER_MODEL = "lith.User"
+AUTH_USER_MODEL = "authnz.User"
 
 # Login URL
 # https://docs.djangoproject.com/en/5.1/ref/settings/#login-url
 
-LOGIN_URL = reverse_lazy("lith:login")
+LOGIN_URL = reverse_lazy("authnz:login")
 
 # Custom message tags
 # https://docs.djangoproject.com/en/5.1/ref/contrib/messages/#message-tags
