@@ -1,7 +1,7 @@
 import pytest
 from django.db import IntegrityError
 
-from .auth import User
+from .models import User
 
 
 @pytest.mark.django_db

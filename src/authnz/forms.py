@@ -9,7 +9,7 @@ class LoginForm(forms.Form):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.form_method = "post"
-        self.helper.form_action = reverse("lith:login")
+        self.helper.form_action = reverse("authnz:login")
 
         self.helper.add_input(Submit("submit", "Login", css_class="btn btn-primary w-100"))
 
