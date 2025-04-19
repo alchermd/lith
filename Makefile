@@ -49,6 +49,10 @@ tf-destroy:
 	@echo "🔻 Running Terraform destroy"
 	bash terraform/scripts/destroy.sh
 
+tf-partial-destroy:
+	@echo "🔻 Running Terraform destroy for the main module"
+	bash terraform/scripts/partial-destroy.sh
+
 tf-lint:
 	@echo "🔬 Linting Terraform scripts"
 	bash terraform/scripts/lint.sh
