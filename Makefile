@@ -20,7 +20,7 @@ format: tf-format python-format
 lint: tf-lint shell-lint python-lint
 	@echo "✅ 🔬 Linting complete"
 
-deploy: tf-plan-and-apply
+deploy: tf-init tf-plan-and-apply
 	@echo "✅ 🚀 Deployment complete"
 
 undeploy: tf-destroy
