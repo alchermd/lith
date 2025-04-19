@@ -17,4 +17,5 @@ data "aws_ami" "ubuntu" {
 resource "aws_instance" "web_server" {
   ami           = data.aws_ami.ubuntu.id
   instance_type = "t3.micro"
+  subnet_id     = aws_subnet.web_a.id
 }
