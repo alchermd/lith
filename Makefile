@@ -23,6 +23,9 @@ lint: tf-lint shell-lint python-lint
 deploy: tf-plan-and-apply
 	@echo "✅ 🚀 Deployment complete"
 
+undeploy: tf-destroy
+	@echo "✅ 🔻 Undeploy complete"
+
 test: python-test
 	@echo "✅ 🧪 Test suite complete"
 
@@ -34,6 +37,10 @@ tf-init:
 tf-plan-and-apply:
 	@echo "⚙️ Running Terraform plan and apply"
 	bash terraform/scripts/plan-and-apply.sh
+
+tf-destroy:
+	@echo "🔻 Running Terraform destroy"
+	bash terraform/scripts/destroy.sh
 
 tf-lint:
 	@echo "🔬 Linting Terraform scripts"
