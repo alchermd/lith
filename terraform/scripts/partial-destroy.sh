@@ -6,4 +6,4 @@ ROOT_DIR=$(pwd)
 TF_ROOT_DIR="${ROOT_DIR}/terraform"
 
 cd "$TF_ROOT_DIR"
-terraform apply -auto-approve
+terraform destroy -auto-approve

@@ -11,6 +11,9 @@ down:
 	@echo "🔻 Shutting application down"
 	docker compose down
 
+bootstrap: tf-bootstrap
+	@echo "✅ 🥾 Bootstrapping complete"
+
 init: tf-init
 	@echo "✅ ⚙️ Initialization complete"
 
@@ -34,6 +37,10 @@ tf-init:
 	@echo "⚙️Initializing Terraform"
 	bash terraform/scripts/init.sh
 
+tf-bootstrap:
+	@echo "🥾 Bootstrapping Terraform environment"
+	bash terraform/scripts/bootstrap.sh
+
 tf-plan-and-apply:
 	@echo "⚙️ Running Terraform plan and apply"
 	bash terraform/scripts/plan-and-apply.sh
@@ -41,6 +48,10 @@ tf-plan-and-apply:
 tf-destroy:
 	@echo "🔻 Running Terraform destroy"
 	bash terraform/scripts/destroy.sh
+
+tf-partial-destroy:
+	@echo "🔻 Running Terraform destroy for the main module"
+	bash terraform/scripts/partial-destroy.sh
 
 tf-lint:
 	@echo "🔬 Linting Terraform scripts"
