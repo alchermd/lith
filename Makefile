@@ -11,6 +11,9 @@ down:
 	@echo "🔻 Shutting application down"
 	docker compose down
 
+bootstrap: tf-bootstrap
+	@echo "✅ 🥾 Bootstrapping complete"
+
 init: tf-init
 	@echo "✅ ⚙️ Initialization complete"
 
@@ -33,6 +36,10 @@ test: python-test
 tf-init:
 	@echo "⚙️Initializing Terraform"
 	bash terraform/scripts/init.sh
+
+tf-bootstrap:
+	@echo "🥾 Bootstrapping Terraform environment"
+	bash terraform/scripts/bootstrap.sh
 
 tf-plan-and-apply:
 	@echo "⚙️ Running Terraform plan and apply"
