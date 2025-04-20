@@ -11,7 +11,7 @@ down:
 	@echo "🔻 Shutting application down"
 	docker compose down
 
-bootstrap: tf-bootstrap
+bootstrap: tf-bootstrap push-to-ecr
 	@echo "✅ 🥾 Bootstrapping complete"
 
 init: tf-init
@@ -23,7 +23,7 @@ format: tf-format python-format
 lint: tf-lint shell-lint python-lint
 	@echo "✅ 🔬 Linting complete"
 
-deploy: tf-init tf-plan-and-apply
+deploy: tf-init tf-plan-and-apply push-to-ecr
 	@echo "✅ 🚀 Deployment complete"
 
 undeploy: tf-destroy
@@ -74,6 +74,11 @@ python-format:
 python-test:
 	@echo "🧪 Running Python tests"
 	docker compose exec app pytest
+
+## Deployment targets
+push-to-ecr:
+	@echo "🐋 Pushing to ECR"
+	bash deploy/scripts/push-to-ecr.sh
 
 ## Miscellaneous targets
 shell-lint:

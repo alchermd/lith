@@ -9,3 +9,4 @@ BOOTSTRAP_DIR="${TF_ROOT_DIR}/bootstrap"
 cd "$BOOTSTRAP_DIR"
 terraform init
 terraform apply -auto-approve
+terraform output --json > tf-output.json
