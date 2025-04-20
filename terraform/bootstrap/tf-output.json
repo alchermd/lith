@@ -1,0 +1,22 @@
+{
+  "dynamodb_table": {
+    "sensitive": false,
+    "type": "string",
+    "value": "terraform-state-lock"
+  },
+  "ecr_repo_arn": {
+    "sensitive": false,
+    "type": "string",
+    "value": "arn:aws:ecr:us-east-1:218407409985:repository/lith"
+  },
+  "ecr_repo_url": {
+    "sensitive": false,
+    "type": "string",
+    "value": "218407409985.dkr.ecr.us-east-1.amazonaws.com/lith"
+  },
+  "state_bucket": {
+    "sensitive": false,
+    "type": "string",
+    "value": "lith-aws-tf-state-us-east-1"
+  }
+}
